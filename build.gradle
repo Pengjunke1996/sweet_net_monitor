@@ -3,14 +3,34 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven{
+            String homeDir = System.getProperty("user.home")
+            url = "$homeDir/maven/repos/"
+            url uri(url)//本地maven，用于发布测试插件
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
         classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
+        classpath 'io.github.pengjunke1996:sweet-plugin-core:0.1.0'
+        classpath 'io.github.pengjunke1996:sweet-plugin-net-monitor:0.1.0'
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven{
+            String homeDir = System.getProperty("user.home")
+            url = "$homeDir/maven/repos/"
+            url uri(url)//本地maven，用于发布测试插件
+        }
     }
 }
 

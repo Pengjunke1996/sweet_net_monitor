@@ -3,7 +3,7 @@
     package="com.sweet.net_monitor">
     <application>
         <activity
-            android:name=".ui.MonitorMainActivity"
+            android:name="com.sweet.net_monitor.net.ui.MonitorMainActivity"
             android:icon="@mipmap/monitor_logo"
             android:label="@string/monitor_app_name"
             android:screenOrientation="portrait"
@@ -11,12 +11,12 @@
             android:theme="@style/Monitor_AppTheme" />
 
         <activity
-            android:name=".ui.MonitorDetailActivity"
+            android:name="com.sweet.net_monitor.net.ui.MonitorDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Monitor_AppTheme" />
 
         <activity
-            android:name=".ui.MonitorConfigActivity"
+            android:name="com.sweet.net_monitor.net.ui.MonitorConfigActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Monitor_AppTheme" />
 
@@ -25,7 +25,7 @@
             android:exported="true"
             android:icon="@mipmap/monitor_logo"
             android:label="@string/monitor_app_name"
-            android:targetActivity=".ui.MonitorMainActivity"
+            android:targetActivity="com.sweet.net_monitor.net.ui.MonitorMainActivity"
             android:taskAffinity="com.sweet.net_monitor.${applicationId}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
         </activity-alias>
 
         <provider
-            android:name=".provider.MonitorProvider"
+            android:name="com.sweet.net_monitor.net.provider.MonitorProvider"
             android:authorities="${applicationId}.monitor_provider"
             android:exported="false" />
     </application>

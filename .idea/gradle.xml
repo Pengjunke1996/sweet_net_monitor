@@ -13,6 +13,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/monitor" />
             <option value="$PROJECT_DIR$/monitor-plugin" />
+            <option value="$PROJECT_DIR$/net_monitor_transformer" />
+            <option value="$PROJECT_DIR$/plugin-core" />
+            <option value="$PROJECT_DIR$/plugin-fun-cost" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

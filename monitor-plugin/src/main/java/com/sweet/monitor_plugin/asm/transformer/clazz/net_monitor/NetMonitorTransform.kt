@@ -21,8 +21,8 @@ class NetMonitorTransform : AbsClassTransformer() {
                 val insList =  InsnList().also {
                     it.add(VarInsnNode(Opcodes.ALOAD,0))
                     it.add(FieldInsnNode(Opcodes.GETFIELD, "okhttp3/OkHttpClient\$Builder", "interceptors", "Ljava/util/List;"))
-                    it.add(FieldInsnNode(Opcodes.GETSTATIC, "com/sweet/net_monitor/MonitorHelper", "INSTANCE", "Lcom/sweet/net_monitor/MonitorHelper;"))
-                    it.add(MethodInsnNode(Opcodes.INVOKEVIRTUAL,"com/sweet/net_monitor/MonitorHelper", "getHookInterceptors", "()Ljava/util/List;", false))
+                    it.add(FieldInsnNode(Opcodes.GETSTATIC, "com/sweet/net_monitor/net/MonitorHelper", "INSTANCE", "Lcom/sweet/net_monitor/net/MonitorHelper;"))
+                    it.add(MethodInsnNode(Opcodes.INVOKEVIRTUAL,"com/sweet/net_monitor/net/MonitorHelper", "getHookInterceptors", "()Ljava/util/List;", false))
                     it.add(MethodInsnNode(Opcodes.INVOKEINTERFACE, "java/util/List", "addAll", "(Ljava/util/Collection;)Z", true))
                     it.add(InsnNode(Opcodes.POP))
                 }

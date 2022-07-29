@@ -11,17 +11,11 @@ import org.objectweb.asm.tree.ClassNode
  */
 open class AbsClassTransformer : ClassTransformer {
 
-
     fun onCommInterceptor(context: TransformContext, klass: ClassNode): Boolean {
-//        "===onCommInterceptor--->$this====${klass.className}===".println()
         if (context.isRelease()) {
             return true
         }
-//
-//        if (!DoKitExtUtil.dokitPluginSwitchOpen()) {
-//            return true
-//        }
-        //过滤kotlin module-info
+
         if (klass.className == "module-info") {
             return true
         }

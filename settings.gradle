@@ -3,3 +3,6 @@ rootProject.name = "sweet_net_tool"
 include ':app'
 include ':monitor'
 include ':monitor-plugin'
+include ':plugin-core'
+include ':net_monitor_transformer'
+include ':plugin-fun-cost'
