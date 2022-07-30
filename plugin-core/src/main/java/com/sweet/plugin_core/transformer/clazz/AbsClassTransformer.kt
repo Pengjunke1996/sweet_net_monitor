@@ -10,9 +10,9 @@ import org.objectweb.asm.tree.ClassNode
 /**
  * 提供拦截方法，可以统一过滤不需要hook的类
  */
-open class AbsClassTransformer : ClassTransformer {
+abstract class AbsClassTransformer : ClassTransformer {
 
-    lateinit var project : Project
+    lateinit var project: Project
 
     fun onCommInterceptor(context: TransformContext, klass: ClassNode): Boolean {
         if (context.isRelease()) {

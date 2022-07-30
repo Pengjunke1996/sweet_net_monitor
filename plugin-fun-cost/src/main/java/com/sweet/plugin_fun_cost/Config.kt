@@ -2,12 +2,14 @@ package com.sweet.plugin_fun_cost
 
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.HashSet
 
 object Config {
 
+    var open: Boolean = false
+    var logTraceInfo: Boolean = false
+
     //一些默认无需插桩的类
-    val UNNEED_TRACE_CLASS = arrayOf("R.class", "R$", "Manifest", "BuildConfig")
+    val UNNEED_TRACE_CLASS = arrayOf("Manifest", "binding")
 
     //插桩配置文件
     var mTraceConfigFile: String? = null
@@ -27,30 +29,21 @@ object Config {
         HashSet<String>()
     }
 
-    //插桩代码所在类
-    var mBeatClass: String? = null
 
-    //是否需要打印出所有被插桩的类和方法
-    var mIsNeedLogTraceInfo = false
-
-
-    fun isNeedTraceClass(fileName: String): Boolean {
+    fun isNeedTraceClass(fileName: String, simpleName: String): Boolean {
         var isNeed = true
-        if (fileName.endsWith(".class")) {
-            for (unTraceCls in UNNEED_TRACE_CLASS) {
-                if (fileName.contains(unTraceCls)) {
-                    isNeed = false
-                    break
-                }
+        for (unTraceCls in UNNEED_TRACE_CLASS) {
+            if (fileName.contains(unTraceCls)) {
+                isNeed = false
+                break
             }
-        } else {
-            isNeed = false
         }
+        if (simpleName.startsWith("R$")
+            || simpleName == "R"
+            || simpleName == "BuildConfig"
+        )
+            isNeed = false
         return isNeed
-    }
-
-    fun initTraceConfig(){
-        mTraceConfigFile =
     }
 
     //判断是否是traceConfig.txt中配置范围的类
@@ -123,7 +116,8 @@ object Config {
         val configStr = Utils.readFileAsString(traceConfigFile.absolutePath)
 
         val configArray =
-            configStr.split(System.lineSeparator().toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            configStr.split(System.lineSeparator().toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()
 
         if (configArray != null) {
             for (element in configArray) {
@@ -153,11 +147,6 @@ object Config {
                         config = config.replace("-keeppackage ", "")
                         mWhitePackageMap.add(config)
                         System.out.println("keeppackage:$config")
-                    }
-                    config.startsWith("-beatclass ") -> {
-                        config = config.replace("-beatclass ", "")
-                        mBeatClass = config
-                        System.out.println("beatclass:$config")
                     }
                     else -> {
                     }

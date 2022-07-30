@@ -68,7 +68,7 @@ open class BaseTransform protected constructor(val project: Project) : Transform
                 project.plugins.hasPlugin("com.android.dynamic-feature") -> SCOPE_FULL_WITH_FEATURES
                 else -> TODO("Not an Android project")
             }
-        }else{
+        } else {
             super.getReferencedScopes()
         }
 

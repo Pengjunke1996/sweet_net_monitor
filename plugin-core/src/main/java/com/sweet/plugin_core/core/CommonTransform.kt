@@ -20,7 +20,7 @@ class CommonTransform(androidProject: Project) : BaseTransform(androidProject) {
             ServiceLoader.load(AbsClassTransformer::class.java).toList()
         transList.forEach {
             classTransformerList.add(it)
-            it.project = androidProject
+            it.project = project
         }
 
     }

@@ -2,39 +2,51 @@ package com.sweet.plugin_fun_cost
 
 import com.didiglobal.booster.transform.TransformContext
 import com.didiglobal.booster.transform.asm.simpleName
+import com.google.auto.service.AutoService
 import com.sweet.plugin_core.transformer.clazz.AbsClassTransformer
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.tree.*
 
+@AutoService(AbsClassTransformer::class)
 class MethodCostTransformer : AbsClassTransformer() {
 
-
-    init {
-        project.extensions.create("sweetCost",SweetCostConfig::class.java)
-        project
+    private fun coverPkgName(name: String, simpleName: String): Boolean {
+        if (Config.isNeedTraceClass(name, simpleName)) {
+            return Config.isConfigTraceClass(name)
+        }
+        return false
     }
 
 
+    override fun onPreTransform(context: TransformContext) {
+        super.onPreTransform(context)
+        initConfig()
+    }
 
-    fun coverPkgName(name: String): Boolean {
-        return name.contains("com/sweet") || name.contains("com/white")
+    fun initConfig() {
+        val sweetCost = project.extensions.getByName("sweetCost") as SweetCostConfig
+        Config.open = sweetCost.open
+        Config.mTraceConfigFile = sweetCost.traceConfigFile
+        Config.logTraceInfo = sweetCost.logTraceInfo
+
+        Config.parseTraceConfigFile()
+        print("MethodCostTransformer:$sweetCost")
     }
 
     override fun transform(context: TransformContext, klass: ClassNode): ClassNode {
         if (onCommInterceptor(context, klass)) {
             return klass
         }
-        if ((!coverPkgName(klass.name))
-            || klass.name.contains("binding", true)
-            || klass.name.contains("com/sweet/apm", true)
-            || klass.simpleName.startsWith("R$")
-            || klass.simpleName == "R"
-            || klass.simpleName == "BuildConfig"
-        ) {
+        if (!coverPkgName(klass.name, klass.simpleName)) {
             return klass
         }
         klass.methods.forEach { mtd ->
-            println("kClassName " + klass.simpleName + " method " + mtd.name)
+            if (mtd.name == "onMethodCost") {
+                return@forEach
+            }
+            if (Config.logTraceInfo) {
+                println("MethodCostTransformer ---" + klass.name + " method " + mtd.name + "---")
+            }
             val inns = mtd.instructions
             if (inns.size() == 0) {
                 return@forEach
@@ -73,7 +85,7 @@ class MethodCostTransformer : AbsClassTransformer() {
                         it.add(
                             MethodInsnNode(
                                 Opcodes.INVOKESTATIC,
-                                "com/sweet/apm/asm/cost/CostPlugin",
+                                "com/sweet/plugin/cost/CostPlugin",
                                 "onMethodExit",
                                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)V",
                                 false

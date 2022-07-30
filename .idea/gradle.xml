@@ -7,15 +7,16 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="liberica-11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/monitor" />
-            <option value="$PROJECT_DIR$/monitor-plugin" />
             <option value="$PROJECT_DIR$/net_monitor_transformer" />
             <option value="$PROJECT_DIR$/plugin-core" />
             <option value="$PROJECT_DIR$/plugin-fun-cost" />
+            <option value="$PROJECT_DIR$/sweet-fun-cost" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

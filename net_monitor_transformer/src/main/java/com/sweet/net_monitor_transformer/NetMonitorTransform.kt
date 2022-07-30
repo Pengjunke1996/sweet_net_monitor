@@ -33,15 +33,15 @@ class NetMonitorTransform : AbsClassTransformer() {
                     it.add(
                         FieldInsnNode(
                             Opcodes.GETSTATIC,
-                            "com/sweet/net_monitor/net/MonitorHelper",
+                            "com/sweet/net_monitor/MonitorHelper",
                             "INSTANCE",
-                            "Lcom/sweet/net_monitor/net/MonitorHelper;"
+                            "Lcom/sweet/net_monitor/MonitorHelper;"
                         )
                     )
                     it.add(
                         MethodInsnNode(
                             Opcodes.INVOKEVIRTUAL,
-                            "com/sweet/net_monitor/net/MonitorHelper",
+                            "com/sweet/net_monitor/MonitorHelper",
                             "getHookInterceptors",
                             "()Ljava/util/List;",
                             false
