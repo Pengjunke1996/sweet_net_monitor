@@ -5,6 +5,7 @@ import com.didiglobal.booster.transform.asm.simpleName
 import com.google.auto.service.AutoService
 import com.sweet.plugin_core.transformer.clazz.AbsClassTransformer
 import org.objectweb.asm.Opcodes
+import org.objectweb.asm.Type
 import org.objectweb.asm.tree.*
 
 @AutoService(AbsClassTransformer::class)
@@ -44,15 +45,15 @@ class MethodCostTransformer : AbsClassTransformer() {
             if (mtd.name == "onMethodCost") {
                 return@forEach
             }
-            if (Config.logTraceInfo) {
-                println("MethodCostTransformer ---" + klass.name + " method " + mtd.name + "---")
-            }
             val inns = mtd.instructions
             if (inns.size() == 0) {
                 return@forEach
             }
             val itt = inns.iterator()
-            val index = mtd.maxLocals + 2
+            val index = mtd.maxLocals + getSize(Type.LONG_TYPE)
+            if (Config.logTraceInfo) {
+                println("MethodCostTransformer ---" + klass.name + " method " + mtd.name + " index " + index + "---")
+            }
             while (itt.hasNext()) {
                 val inNode = itt.next()
                 val op = inNode.opcode
@@ -111,9 +112,20 @@ class MethodCostTransformer : AbsClassTransformer() {
 
             mtd.instructions.insert(il)
 
+            mtd.visitMaxs(mtd.maxStack,index)
+
         }
 
         return klass
+    }
+
+    private fun getSize(type: Type): Int {
+        return when (type.sort) {
+            Type.VOID -> 0
+            Type.BOOLEAN, Type.CHAR, Type.BYTE, Type.SHORT, Type.INT, Type.FLOAT, Type.ARRAY, Type.OBJECT, 12 -> 1
+            Type.LONG, Type.DOUBLE -> 2
+            else -> throw AssertionError()
+        }
     }
 
 

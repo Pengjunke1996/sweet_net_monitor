@@ -3,13 +3,13 @@ package com.sweet.net_monitor.service
 import com.android.local.service.annotation.Get
 import com.android.local.service.annotation.Page
 import com.android.local.service.annotation.Service
-import com.sweet.net_monitor.net.MonitorHelper
-import com.sweet.net_monitor.net.data.MonitorData
-import com.sweet.net_monitor.net.enum.SPValueType
-import com.sweet.net_monitor.net.mock.MockHelper
-import com.sweet.net_monitor.net.utils.ServiceDataProvider
-import com.sweet.net_monitor.net.utils.lastUpdateDataId
-import com.sweet.net_monitor.net.weaknetwork.WeakNetworkHelper
+import com.sweet.net_monitor.MonitorHelper
+import com.sweet.net_monitor.data.MonitorData
+import com.sweet.net_monitor.enum.SPValueType
+import com.sweet.net_monitor.mock.MockHelper
+import com.sweet.net_monitor.utils.ServiceDataProvider
+import com.sweet.net_monitor.utils.lastUpdateDataId
+import com.sweet.net_monitor.weaknetwork.WeakNetworkHelper
 
 @Service(port = 9527)
 abstract class MonitorService {

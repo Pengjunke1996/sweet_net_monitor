@@ -51,8 +51,8 @@ dependencies {
     api "com.didiglobal.booster:booster-api:$booster_version"
     api "com.didiglobal.booster:booster-transform-asm:$booster_version"
 
-    kapt 'com.google.auto.service:auto-service:1.0'
-    api 'com.google.auto.service:auto-service:1.0'
+    kapt 'com.google.auto.service:auto-service:1.0.1'
+    api 'com.google.auto.service:auto-service:1.0.1'
 
 }
 
