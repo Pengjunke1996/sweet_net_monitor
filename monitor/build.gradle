@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     compileOnly "com.squareup.retrofit2:retrofit:2.9.0"
 
-    def room_version = "2.5.0-alpha02"
+    def room_version = "2.4.2"
     compileOnly "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     compileOnly "androidx.room:room-ktx:$room_version"

@@ -71,9 +71,9 @@ class MonitorInterceptor : Interceptor {
             monitorData.requestHeaders = response.request().headers().toJsonString()
 
             val contentType = response.headers()["Content-Type"]
-            if (!contentType.isWhiteContentType()) {
+            /*if (!contentType.isWhiteContentType()) {
                 return response
-            }
+            }*/
 
             monitorData.responseTime = Date().formatData(TIME_LONG)
             monitorData.duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)

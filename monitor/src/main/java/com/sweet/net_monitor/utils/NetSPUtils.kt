@@ -3,7 +3,7 @@ package com.sweet.net_monitor.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-internal object SPUtils {
+internal object NetSPUtils {
 
     private fun getSharedPreference(context: Context, fileName: String): SharedPreferences {
         return context.getSharedPreferences(fileName, Context.MODE_PRIVATE)

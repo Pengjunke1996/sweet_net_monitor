@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sweet.net_monitor.MonitorHelper
@@ -58,16 +59,33 @@ class MonitorMainActivity : AppCompatActivity() {
             binding.tvWifiAddress.text = monitorUrl
             Log.d("MonitorHelper", monitorUrl)
         }
+        binding.etSearch.doOnTextChanged { text, start, before, count ->
+            textSearchKey = text.toString()
+            setData()
+        }
 
         binding.ivSetting.setOnClickListener {
             startActivity(Intent(this, MonitorConfigActivity::class.java))
         }
     }
 
+    var textSearchKey = ""
+
     private fun setData() {
         MonitorHelper.getMonitorDataListForAndroid(limit = 100)?.observe(this, Observer {
-            adapter?.setData(it)
+            setAdapterData(it)
         })
+    }
+
+    private fun setAdapterData(it: MutableList<MonitorData>?) {
+        if (textSearchKey.isBlank()) {
+            adapter?.setData(it)
+        } else {
+            val list = it?.filter {
+                it.path?.contains(textSearchKey, true) ?: false
+            }?.toMutableList()
+            adapter?.setData(list)
+        }
     }
 
     private fun initRv() {

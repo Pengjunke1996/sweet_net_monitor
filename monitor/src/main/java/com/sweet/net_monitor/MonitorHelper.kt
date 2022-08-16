@@ -18,7 +18,7 @@ import com.sweet.net_monitor.room.MonitorDao
 import com.sweet.net_monitor.room.MonitorDatabase
 import com.sweet.net_monitor.service.MonitorService
 import com.sweet.net_monitor.utils.MonitorProperties
-import com.sweet.net_monitor.utils.SPUtils
+import com.sweet.net_monitor.utils.NetSPUtils
 import com.sweet.net_monitor.utils.defaultContentTypes
 import com.sweet.net_monitor.utils.lastUpdateDataId
 import com.google.gson.Gson
@@ -180,6 +180,6 @@ object MonitorHelper {
     }
 
     fun updateSpValue(fileName: String, key: String, value: Any?) {
-        SPUtils.saveValue(context ?: return, fileName, key, value)
+        NetSPUtils.saveValue(context ?: return, fileName, key, value)
     }
 }
