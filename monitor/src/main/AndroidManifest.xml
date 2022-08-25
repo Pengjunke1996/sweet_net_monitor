@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sweet.net_monitor">
+
     <application>
+        <provider
+            android:name=".app.MonitorContentProvider"
+            android:authorities="com.sweet.net_monitor.init.${applicationId}"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.sp.SpDetailActivity"
+            android:exported="false"
+            android:theme="@style/Monitor_AppTheme" />
+        <activity
+            android:name=".ui.sp.SpEditActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Monitor_AppTheme" />
         <activity
             android:name="com.sweet.net_monitor.ui.MonitorMainActivity"
             android:icon="@mipmap/monitor_logo"
             android:label="@string/monitor_app_name"
             android:screenOrientation="portrait"
             android:taskAffinity="com.sweet.net_monitor.${applicationId}"
-            android:theme="@style/Monitor_AppTheme" />
-
-        <activity
-            android:name="com.sweet.net_monitor.ui.MonitorDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Monitor_AppTheme" />
-
-        <activity
-            android:name="com.sweet.net_monitor.ui.MonitorConfigActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/Monitor_AppTheme" />
 
         <activity-alias
@@ -29,13 +35,24 @@
             android:taskAffinity="com.sweet.net_monitor.${applicationId}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
+
+        <activity
+            android:name="com.sweet.net_monitor.ui.MonitorDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Monitor_AppTheme" />
+        <activity
+            android:name="com.sweet.net_monitor.ui.MonitorConfigActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Monitor_AppTheme" />
 
         <provider
             android:name="com.sweet.net_monitor.provider.MonitorProvider"
             android:authorities="${applicationId}.monitor_provider"
             android:exported="false" />
     </application>
+
 </manifest>

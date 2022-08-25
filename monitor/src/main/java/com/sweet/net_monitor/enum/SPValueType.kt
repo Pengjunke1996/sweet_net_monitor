@@ -1,6 +1,8 @@
 package com.sweet.net_monitor.enum
 
-enum class SPValueType(val value: kotlin.String) {
+import java.io.Serializable
+
+enum class SPValueType(val value: kotlin.String) : Serializable {
     Int("Int"),
     Double("Double"),
     Long("Long"),

@@ -1,3 +1,4 @@
 <resources>
     <string name="monitor_app_name">抓包</string>
+    <string name="sp_enter">本地Sp查看</string>
 </resources>
