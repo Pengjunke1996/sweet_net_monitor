@@ -20,7 +20,7 @@
             android:theme="@style/Monitor_AppTheme" />
         <activity
             android:name="com.sweet.net_monitor.ui.MonitorMainActivity"
-            android:icon="@mipmap/monitor_logo"
+            android:icon="@mipmap/monitor_logo_green"
             android:label="@string/monitor_app_name"
             android:screenOrientation="portrait"
             android:taskAffinity="com.sweet.net_monitor.${applicationId}"
@@ -29,7 +29,7 @@
         <activity-alias
             android:name=".ui.MonitorMainActivity"
             android:exported="true"
-            android:icon="@mipmap/monitor_logo"
+            android:icon="@mipmap/monitor_logo_green"
             android:label="@string/monitor_app_name"
             android:targetActivity="com.sweet.net_monitor.ui.MonitorMainActivity"
             android:taskAffinity="com.sweet.net_monitor.${applicationId}">

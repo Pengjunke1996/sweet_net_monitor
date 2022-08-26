@@ -7,8 +7,11 @@ import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.database.Cursor
+import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build
+import com.sweet.net_monitor.R
+import com.sweet.net_monitor.ui.MonitorMainActivity
 import com.sweet.net_monitor.utils.flowbus.FlowEventBus
 import com.sweet.net_monitor.ui.sp.SpEditActivity
 
@@ -30,14 +33,23 @@ class MonitorContentProvider : ContentProvider() {
         val iContext = context ?: return false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             val shortcutManager = iContext.getSystemService(ShortcutManager::class.java)
-            val intent = Intent(context, SpEditActivity::class.java)
-            intent.action = Intent.ACTION_VIEW
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
             shortcutManager?.dynamicShortcuts = listOf(
                 ShortcutInfo.Builder(iContext.applicationContext, "sp")
-                    .setShortLabel("Sp查看")
-                    .setIntent(intent)
+                    .setShortLabel("SP编辑")
+                    .setIcon(Icon.createWithResource(iContext, R.drawable.icon_sp_save))
+                    .setIntent(Intent(context, SpEditActivity::class.java).also {
+                        it.action = Intent.ACTION_VIEW
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    })
+                    .build(),
+                ShortcutInfo.Builder(iContext.applicationContext, "net")
+                    .setShortLabel("网络抓包")
+                    .setIcon(Icon.createWithResource(iContext, R.drawable.icon_net_monitor))
+                    .setIntent(Intent(context, MonitorMainActivity::class.java).also {
+                        it.action = Intent.ACTION_VIEW
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    })
                     .build()
             )
         }

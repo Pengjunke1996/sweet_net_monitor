@@ -12,6 +12,7 @@ import com.sweet.net_monitor.R
 import com.sweet.net_monitor.databinding.DialogFragmentEditSpBinding
 import com.sweet.net_monitor.enum.SPValueType
 import com.sweet.net_monitor.event.RefreshSpEvent
+import com.sweet.net_monitor.utils.showSoftInput
 
 class SpEditDialogFragment : DialogFragment() {
     companion object {
@@ -61,6 +62,10 @@ class SpEditDialogFragment : DialogFragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding.etNum.showSoftInput()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvConfirm.setOnClickListener {
