@@ -9,6 +9,7 @@ import com.sweet.net_monitor.utils.flowbus.util.launchWhenStateAtLeast
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import java.util.logging.Level
