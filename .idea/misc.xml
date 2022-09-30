@@ -7,9 +7,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.13069908814589665" />
+        <entry key="monitor/src/main/res/drawable/bg_flutter_tag.xml" value="0.1" />
         <entry key="monitor/src/main/res/drawable/bg_monitor_theme.xml" value="0.153" />
         <entry key="monitor/src/main/res/drawable/color_cursor.xml" value="0.1" />
+        <entry key="monitor/src/main/res/layout/activity_monitor_config.xml" value="0.165" />
+        <entry key="monitor/src/main/res/layout/activity_monitor_detail.xml" value="0.25" />
         <entry key="monitor/src/main/res/layout/activity_monitor_main.xml" value="0.23697916666666666" />
+        <entry key="monitor/src/main/res/layout/activity_sp_detail.xml" value="0.1" />
+        <entry key="monitor/src/main/res/layout/activity_sp_edit.xml" value="0.2212962962962963" />
+        <entry key="monitor/src/main/res/layout/dialog_fragment_edit_sp.xml" value="0.165" />
+        <entry key="monitor/src/main/res/layout/item_monitor.xml" value="0.24270833333333333" />
+        <entry key="monitor/src/main/res/layout/item_monitor_sp.xml" value="0.24270833333333333" />
+        <entry key="monitor/src/main/res/layout/item_monitor_sp_detail.xml" value="0.24270833333333333" />
       </map>
     </option>
   </component>

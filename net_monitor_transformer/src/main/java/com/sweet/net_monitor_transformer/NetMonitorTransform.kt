@@ -19,49 +19,85 @@ class NetMonitorTransform : AbsClassTransformer() {
         }
         klass.methods.forEach { mtd ->
             if (mtd.name == "build") {
-                println("NetMonitorTransform start---" + klass.simpleName + " method " + mtd.name)
-                val insList = InsnList().also {
-                    it.add(VarInsnNode(Opcodes.ALOAD, 0))
-                    it.add(
-                        FieldInsnNode(
-                            Opcodes.GETFIELD,
-                            "okhttp3/OkHttpClient\$Builder",
-                            "interceptors",
-                            "Ljava/util/List;"
-                        )
-                    )
-                    it.add(
-                        FieldInsnNode(
-                            Opcodes.GETSTATIC,
-                            "com/sweet/net_monitor/MonitorHelper",
-                            "INSTANCE",
-                            "Lcom/sweet/net_monitor/MonitorHelper;"
-                        )
-                    )
-                    it.add(
-                        MethodInsnNode(
-                            Opcodes.INVOKEVIRTUAL,
-                            "com/sweet/net_monitor/MonitorHelper",
-                            "getHookInterceptors",
-                            "()Ljava/util/List;",
-                            false
-                        )
-                    )
-                    it.add(
-                        MethodInsnNode(
-                            Opcodes.INVOKEINTERFACE,
-                            "java/util/List",
-                            "addAll",
-                            "(Ljava/util/Collection;)Z",
-                            true
-                        )
-                    )
-                    it.add(InsnNode(Opcodes.POP))
-                }
-                mtd.instructions.insert(insList)
-                println("NetMonitorTransform end---" + klass.simpleName + " method " + mtd.name)
+                autoInvokeBeforeInterceptor(klass, mtd)
             }
         }
         return super.transform(context, klass)
+    }
+
+    private fun autoAddInterceptor(
+        klass: ClassNode,
+        mtd: MethodNode
+    ) {
+        println("NetMonitorTransform start---" + klass.simpleName + " method " + mtd.name)
+        val insList = InsnList().also {
+            it.add(VarInsnNode(Opcodes.ALOAD, 0))
+            it.add(
+                FieldInsnNode(
+                    Opcodes.GETFIELD,
+                    "okhttp3/OkHttpClient\$Builder",
+                    "interceptors",
+                    "Ljava/util/List;"
+                )
+            )
+            it.add(
+                FieldInsnNode(
+                    Opcodes.GETSTATIC,
+                    "com/sweet/net_monitor/MonitorHelper",
+                    "INSTANCE",
+                    "Lcom/sweet/net_monitor/MonitorHelper;"
+                )
+            )
+            it.add(
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    "com/sweet/net_monitor/MonitorHelper",
+                    "getHookInterceptors",
+                    "()Ljava/util/List;",
+                    false
+                )
+            )
+            it.add(
+                MethodInsnNode(
+                    Opcodes.INVOKEINTERFACE,
+                    "java/util/List",
+                    "addAll",
+                    "(Ljava/util/Collection;)Z",
+                    true
+                )
+            )
+            it.add(InsnNode(Opcodes.POP))
+        }
+        mtd.instructions.insert(insList)
+        println("NetMonitorTransform end---" + klass.simpleName + " method " + mtd.name)
+    }
+
+    private fun autoInvokeBeforeInterceptor(
+        klass: ClassNode,
+        mtd: MethodNode
+    ) {
+        println("NetMonitorTransform start---" + klass.simpleName + " method " + mtd.name)
+        val insList = InsnList().also {
+            it.add(
+                FieldInsnNode(
+                    Opcodes.GETSTATIC,
+                    "com/sweet/net_monitor/MonitorHelper",
+                    "INSTANCE",
+                    "Lcom/sweet/net_monitor/MonitorHelper;"
+                )
+            )
+            it.add(VarInsnNode(Opcodes.ALOAD, 0))
+            it.add(
+                MethodInsnNode(
+                    Opcodes.INVOKEVIRTUAL,
+                    "com/sweet/net_monitor/MonitorHelper",
+                    "beforeOkhttpBuild",
+                    "(Lokhttp3/OkHttpClient\$Builder;)V",
+                    false
+                )
+            )
+        }
+        mtd.instructions.insert(insList)
+        println("NetMonitorTransform end---" + klass.simpleName + " method " + mtd.name)
     }
 }

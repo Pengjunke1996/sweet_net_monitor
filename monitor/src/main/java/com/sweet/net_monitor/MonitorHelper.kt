@@ -7,6 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.android.local.service.core.ALSHelper
 import com.android.local.service.core.data.ServiceConfig
+import com.google.gson.Gson
+import com.sweet.net_monitor.apm.net.MonitorResult
+import com.sweet.net_monitor.apm.net.NetMonitorCallback
+import com.sweet.net_monitor.apm.net.SweetNetMonitor
 import com.sweet.net_monitor.data.MonitorData
 import com.sweet.net_monitor.data.SpValueInfo
 import com.sweet.net_monitor.enum.SPValueType
@@ -21,9 +25,10 @@ import com.sweet.net_monitor.utils.MonitorProperties
 import com.sweet.net_monitor.utils.NetSPUtils
 import com.sweet.net_monitor.utils.defaultContentTypes
 import com.sweet.net_monitor.utils.lastUpdateDataId
-import com.google.gson.Gson
+import okhttp3.Call
+import okhttp3.EventListener
+import okhttp3.OkHttpClient
 import java.io.File
-import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -68,7 +73,8 @@ object MonitorHelper {
             val propertiesData = MonitorProperties().paramsProperties()
             val dbName: String = propertiesData?.dbName ?: "monitor_room_db"
             val contentTypes = propertiesData?.whiteContentTypes
-            whiteContentTypes = if (contentTypes.isNullOrBlank()) defaultContentTypes else contentTypes
+            whiteContentTypes =
+                if (contentTypes.isNullOrBlank()) defaultContentTypes else contentTypes
             whiteHosts = propertiesData?.whiteHosts
             blackHosts = propertiesData?.blackHosts
             port = propertiesData?.port?.toInt() ?: 0
@@ -181,5 +187,21 @@ object MonitorHelper {
 
     fun updateSpValue(fileName: String, key: String, value: Any?) {
         NetSPUtils.saveValue(context ?: return, fileName, key, value)
+    }
+
+    fun beforeOkhttpBuild(builder: OkHttpClient.Builder) {
+        builder.interceptors().addAll(hookInterceptors)
+        builder.eventListenerFactory {
+            SweetNetMonitor(object : NetMonitorCallback {
+                override fun onSuccess(call: Call, monitorResult: MonitorResult) {
+
+                }
+
+                override fun onError(call: Call, monitorResult: MonitorResult, ioe: Exception) {
+
+                }
+
+            }, true)
+        }
     }
 }
