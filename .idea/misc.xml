@@ -17,13 +17,14 @@
         <entry key="monitor/src/main/res/layout/activity_sp_detail.xml" value="0.1" />
         <entry key="monitor/src/main/res/layout/activity_sp_edit.xml" value="0.2212962962962963" />
         <entry key="monitor/src/main/res/layout/dialog_fragment_edit_sp.xml" value="0.165" />
+        <entry key="monitor/src/main/res/layout/include_status_bar_view_layout.xml" value="0.23541666666666666" />
         <entry key="monitor/src/main/res/layout/item_monitor.xml" value="0.24270833333333333" />
         <entry key="monitor/src/main/res/layout/item_monitor_sp.xml" value="0.24270833333333333" />
         <entry key="monitor/src/main/res/layout/item_monitor_sp_detail.xml" value="0.24270833333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

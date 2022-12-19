@@ -71,10 +71,10 @@ class SpEditDialogFragment : DialogFragment() {
         binding.tvConfirm.setOnClickListener {
             val value = binding.etNum.text.toString()
             val realValue = when (valueType) {
-                SPValueType.Int.value -> value.toIntOrNull()
-                SPValueType.Double.value -> value.toDoubleOrNull()
-                SPValueType.Long.value -> value.toLongOrNull()
-                SPValueType.Float.value -> value.toFloatOrNull()
+                SPValueType.Int.value -> value.toIntOrNull() ?: 0
+                SPValueType.Double.value -> value.toDoubleOrNull() ?: 0.0
+                SPValueType.Long.value -> value.toLongOrNull() ?: 0L
+                SPValueType.Float.value -> value.toFloatOrNull() ?: 0.0f
                 SPValueType.Boolean.value -> value.toBoolean()
                 else -> value
             }

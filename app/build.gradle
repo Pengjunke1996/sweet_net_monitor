@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 apply plugin: 'com.sweet.plugin.core'
+apply plugin: 'com.sweet.auto-language'
 
 
 android {
@@ -36,6 +37,10 @@ sweetCost {
     open = true //这里如果设置为false,则会关闭插桩
     logTraceInfo = true //这里设置为true时可以在log日志里看到所有被插桩的类和方法
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
+}
+
+languageConfig {
+    filePath = "${project.projectDir}/test.xlsx"
 }
 
 dependencies {

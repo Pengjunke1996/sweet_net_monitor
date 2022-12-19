@@ -12,6 +12,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/auto-language" />
+            <option value="$PROJECT_DIR$/lib_sign" />
             <option value="$PROJECT_DIR$/monitor" />
             <option value="$PROJECT_DIR$/net_monitor_transformer" />
             <option value="$PROJECT_DIR$/plugin-core" />

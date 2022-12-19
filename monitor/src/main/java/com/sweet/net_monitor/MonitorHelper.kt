@@ -26,7 +26,6 @@ import com.sweet.net_monitor.utils.NetSPUtils
 import com.sweet.net_monitor.utils.defaultContentTypes
 import com.sweet.net_monitor.utils.lastUpdateDataId
 import okhttp3.Call
-import okhttp3.EventListener
 import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.ExecutorService
@@ -135,7 +134,7 @@ object MonitorHelper {
 
     fun getMonitorDataListForAndroid(
         limit: Int = 50,
-        offset: Int = 0
+        offset: Int = 0,
     ): LiveData<MutableList<MonitorData>>? {
         return getMonitorDataDao()?.queryByOffsetForAndroid(limit, offset)
     }

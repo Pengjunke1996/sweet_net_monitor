@@ -19,13 +19,25 @@
         <module name="sweet_net_tool.plugin-fun-cost.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
+    <bytecodeTargetLevel target="1.7">
       <module name="sweet_net_tool.app" target="11" />
+      <module name="sweet_net_tool.auto-language" target="11" />
+      <module name="sweet_net_tool.auto-language.main" target="11" />
+      <module name="sweet_net_tool.auto-language.test" target="11" />
       <module name="sweet_net_tool.monitor" target="11" />
       <module name="sweet_net_tool.monitor-plugin" target="11" />
+      <module name="sweet_net_tool.net_monitor_transformer" target="1.8" />
+      <module name="sweet_net_tool.net_monitor_transformer.main" target="1.8" />
+      <module name="sweet_net_tool.net_monitor_transformer.test" target="1.8" />
       <module name="sweet_net_tool.plugin-core" target="11" />
       <module name="sweet_net_tool.plugin-core.main" target="11" />
       <module name="sweet_net_tool.plugin-core.test" target="11" />
+      <module name="sweet_net_tool.plugin-fun-cost" target="1.8" />
+      <module name="sweet_net_tool.plugin-fun-cost.main" target="1.8" />
+      <module name="sweet_net_tool.plugin-fun-cost.test" target="1.8" />
+      <module name="sweet_net_tool.sweet-fun-cost" target="1.8" />
+      <module name="sweet_net_tool.sweet-fun-cost.main" target="1.8" />
+      <module name="sweet_net_tool.sweet-fun-cost.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
