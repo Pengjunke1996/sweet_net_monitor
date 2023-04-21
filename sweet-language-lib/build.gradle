@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+repositories {
+    google()
+    mavenCentral()
+
+    // OPTIONAL If you want to use SNAPSHOT version, sonatype repository is required.
+    maven { url 'https://oss.sonatype.org/content/repositories/public' }
+
+}
+
+
+
+dependencies {
+    compileOnly(project(":plugin-core"))
+    kapt 'com.google.auto.service:auto-service:1.0.1'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0.1'
+    implementation 'com.alibaba:easyexcel:3.1.1'
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+apply from: '../publish.gradle'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

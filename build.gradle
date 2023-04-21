@@ -14,7 +14,7 @@ buildscript {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
         classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
         classpath 'io.github.pengjunke1996:sweet-plugin-core:0.1.1'
-        classpath 'io.github.pengjunke1996:sweet-auto-language:0.1.0'
+        //classpath 'io.github.pengjunke1996:sweet-auto-language:0.1.0'
         classpath 'io.github.pengjunke1996:sweet-plugin-net-monitor:0.1.1'
         classpath 'io.github.pengjunke1996:sweet-plugin-fun-cost:0.1.1'
 

@@ -35,8 +35,7 @@
         app:layout_constraintLeft_toRightOf="@+id/tv_source"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_goneMarginLeft="10dp"
-        tools:text="https://dev-outspace.secon.cn/" />
+        app:layout_goneMarginLeft="10dp" />
 
     <TextView
         android:id="@+id/tv_path"
@@ -50,8 +49,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_host"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_goneMarginLeft="10dp"
-        tools:text="spero-ultron-service/user/spero_165653/image" />
+        app:layout_goneMarginLeft="10dp" />
 
 
     <View

@@ -20,7 +20,7 @@ publishing {
                 url = version.endsWith('SNAPSHOT') ? mavenSnapshotsUrl : mavenReleasesUrl
                 credentials {
                     def localProperties = new Properties()
-                    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+                    localProperties.load(new FileInputStream(rootProject.file("gradle.properties")))
                     username = localProperties.getProperty('mavenCentralUsername')
                     password = localProperties.getProperty('mavenCentralPassword')
                 }

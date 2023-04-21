@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 apply plugin: 'com.sweet.plugin.core'
-apply plugin: 'com.sweet.auto-language'
+//apply plugin: 'com.sweet.auto-language'
 
 
 android {
@@ -39,9 +39,9 @@ sweetCost {
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
 
-languageConfig {
+/*languageConfig {
     filePath = "${project.projectDir}/test.xlsx"
-}
+}*/
 
 dependencies {
 
